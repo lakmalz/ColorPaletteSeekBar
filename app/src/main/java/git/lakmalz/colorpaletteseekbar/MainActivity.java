@@ -21,11 +21,6 @@ public class MainActivity extends AppCompatActivity {
                     textView.setTextColor(mColorSeekBar.getColor());
                 } else {
                     textView.setTextColor(mColorSeekBar.getOpacityColor());
-
-                    /*int int_value = mColorSeekBar.getOpacityColor();
-                    String hex_value = int_value < 0
-                            ? "-" + Integer.toHexString(int_value)
-                            : Integer.toHexString(int_value);*/
                 }
             }
         });

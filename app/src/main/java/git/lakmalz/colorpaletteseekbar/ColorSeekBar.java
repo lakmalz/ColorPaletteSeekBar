@@ -226,7 +226,7 @@ public class ColorSeekBar extends View {
         //draw color bar thumb
         float thumbX = colorPosition + realLeft;
         float thumbY = mColorRect.top + mColorRect.height() / 2;
-        canvas.drawCircle(thumbX, thumbY, mBarHeight / 2 + 5, colorPaint);
+        //canvas.drawCircle(thumbX, 70, mBarHeight / 2 + 5, colorPaint);
         int[] toThumbNormal = new int[]{Color.WHITE, Color.WHITE};
 
         //draw color bar thumb radial gradient shader
@@ -263,7 +263,7 @@ public class ColorSeekBar extends View {
             float alphaPosition = (float) mAlphaBarPosition / 255 * mBarWidth;
             float alphaThumbX = alphaPosition + realLeft;
             float alphaThumbY = mAlphaRect.top + mAlphaRect.height() / 2;
-            canvas.drawCircle(alphaThumbX, alphaThumbY, mBarHeight / 2 + 5, colorPaint);
+            //canvas.drawCircle(alphaThumbX, alphaThumbY, mBarHeight / 2 + 5, colorPaint);
 
             //draw alpha bar thumb radial gradient shader
             int[] toThumbAlpha = new int[]{Color.WHITE, Color.WHITE};
@@ -279,32 +279,26 @@ public class ColorSeekBar extends View {
             //init rect
             int top = 250;
             mOpacityRect = new Rect(realLeft, top, realRight, top + mBarHeight);
-            RectF mOpacityRect1 = new RectF(realLeft, top, realRight, top + mBarHeight);
-            RectF mOpacityRect1White = new RectF(realLeft, top, realRight, top + mBarHeight);
+            RectF mBrightnessRect = new RectF(realLeft, top, realRight, top + mBarHeight);
 
             /*int[] toOpacity = new int[]{colorToDark, opacityColor};*/
             int[] toOpacity = new int[]{colorToDark, opacityColor};
             //draw alpha bar
-            Paint alphaBarPaint = new Paint();
+            Paint brightnessBarPaint = new Paint();
 
 
-            alphaBarPaint.setStyle(Paint.Style.STROKE);
-            alphaBarPaint.setColor(Color.WHITE);
-            alphaBarPaint.setStrokeWidth(3);
-            canvas.drawRoundRect(mOpacityRect1, 25, 25, alphaBarPaint);
+            brightnessBarPaint.setStyle(Paint.Style.STROKE);
+            brightnessBarPaint.setColor(Color.WHITE);
+            brightnessBarPaint.setStrokeWidth(3);
+            canvas.drawRoundRect(mBrightnessRect, 25, 25, brightnessBarPaint);
 
-            /*alphaBarPaint.setStyle(Paint.Style.FILL);
-            alphaBarPaint.setColor(Color.WHITE);
-            alphaBarPaint.setStrokeWidth(3);
-            canvas.drawRoundRect(mOpacityRect1White, 25, 25, alphaBarPaint);*/
-
-            alphaBarPaint.setAntiAlias(true);
-            LinearGradient alphaBarShader = new LinearGradient(0, 0, mOpacityRect.width(), 0, toOpacity, null, Shader.TileMode.CLAMP);
-            alphaBarPaint.setShader(alphaBarShader);
+            brightnessBarPaint.setAntiAlias(true);
+            LinearGradient brightnessBarShader = new LinearGradient(0, 0, mOpacityRect.width(), 0, toOpacity, null, Shader.TileMode.CLAMP);
+            brightnessBarPaint.setShader(brightnessBarShader);
 
 
-            alphaBarPaint.setStyle(Paint.Style.FILL);
-            canvas.drawRoundRect(mOpacityRect1, 25, 25, alphaBarPaint);
+            brightnessBarPaint.setStyle(Paint.Style.FILL);
+            canvas.drawRoundRect(mBrightnessRect, 25, 25, brightnessBarPaint);
 
             //draw alpha bar thumb
             float alphaPosition = (float) mOpacityBarPosition / 255 * mBarWidth;
