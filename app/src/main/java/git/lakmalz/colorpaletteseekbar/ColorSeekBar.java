@@ -212,11 +212,12 @@ public class ColorSeekBar extends View {
         float colorPosition = (float) mColorBarPosition / mMaxPosition * mBarWidth;
 
         Paint colorPaint = new Paint();
+        colorPaint.setColor(Color.WHITE);
         colorPaint.setAntiAlias(true);
         int color = getColor(false);
         int opacityColor = getColor(true);
         int colorToTransparent = Color.argb(0, Color.red(Color.WHITE), Color.green(Color.WHITE), Color.blue(Color.WHITE));
-        int[] toAlpha = new int[]{color, colorToTransparent};
+        int[] toAlpha = new int[]{Color.WHITE,Color.WHITE};
         int[] thumbColor = new int[]{Color.WHITE,Color.WHITE};
         //clear
         canvas.drawBitmap(mTransparentBitmap, 0, 0, null);
@@ -228,14 +229,12 @@ public class ColorSeekBar extends View {
         //draw color bar thumb
         float thumbX = colorPosition + realLeft;
         float thumbY = mColorRect.top + mColorRect.height() / 2;
-        canvas.drawCircle(thumbX, thumbY, mBarHeight / 2 + 5, colorPaint);
+        canvas.drawCircle(thumbX, thumbY, mBarHeight / 2 + 8, colorPaint);
 
         //draw color bar thumb radial gradient shader
         RadialGradient thumbShader = new RadialGradient(thumbX, thumbY, mThumbRadius, thumbColor, null, Shader.TileMode.CLAMP);
         Paint thumbGradientPaint = new Paint();
         thumbGradientPaint.setAntiAlias(true);
-        /*thumbGradientPaint.setStrokeWidth(3);
-        thumbGradientPaint.setColor(Color.WHITE);*/
         thumbGradientPaint.setShader(thumbShader);
         canvas.drawCircle(thumbX, thumbY, mThumbHeight / 2, thumbGradientPaint);
 
@@ -244,7 +243,7 @@ public class ColorSeekBar extends View {
 
             //init rect
             mAlphaRect = new RectF(realLeft, top, realRight, top + mBarHeight);
-            int[] toAlphaColor = new int[]{Color.BLACK, color};
+            int[] toAlphaColor = new int[]{Color.WHITE, color};
             //draw alpha bar
             Paint alphaBarPaint = new Paint();
             alphaBarPaint.setAntiAlias(true);
@@ -258,7 +257,7 @@ public class ColorSeekBar extends View {
             float alphaPosition = (float) mAlphaBarPosition / 255 * mBarWidth;
             float alphaThumbX = alphaPosition + realLeft;
             float alphaThumbY = mAlphaRect.top + mAlphaRect.height() / 2;
-            canvas.drawCircle(alphaThumbX, alphaThumbY, mBarHeight / 2 + 5, colorPaint);
+            canvas.drawCircle(alphaThumbX, alphaThumbY, mBarHeight / 2 + 8, colorPaint);
 
             //draw alpha bar thumb radial gradient shader
             RadialGradient alphaThumbShader = new RadialGradient(alphaThumbX, alphaThumbY, mThumbRadius, toAlpha, null, Shader
@@ -289,7 +288,7 @@ public class ColorSeekBar extends View {
             float alphaPosition = (float) mBrightnessPosition / 255 * mBarWidth;
             float alphaThumbX = alphaPosition + realLeft;
             float alphaThumbY = mBrightnessRect.top + mBrightnessRect.height() / 2;
-            canvas.drawCircle(alphaThumbX, alphaThumbY, mBarHeight / 2 + 5, colorPaint);
+            canvas.drawCircle(alphaThumbX, alphaThumbY, mBarHeight / 2 + 8, colorPaint);
 
             //draw alpha bar thumb radial gradient shader
             RadialGradient alphaThumbShader = new RadialGradient(alphaThumbX, alphaThumbY, mThumbRadius, toAlpha, null, Shader
